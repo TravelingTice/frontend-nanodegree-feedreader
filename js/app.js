@@ -8,19 +8,21 @@
 
 // The names and URLs to all of the feeds we'd like available.
 var allFeeds = [
-    {
-        name: 'Udacity Blog',
-        url: 'http://blog.udacity.com/feed'
-    }, {
-        name: 'CSS Tricks',
-        url: 'http://feeds.feedburner.com/CssTricks'
-    }, {
-        name: 'HTML5 Rocks',
-        url: 'http://feeds.feedburner.com/html5rocks'
-    }, {
-        name: 'Linear Digressions',
-        url: 'http://feeds.feedburner.com/udacity-linear-digressions'
-    }
+  {   name: 'TravelingTice',
+      url: 'http://feeds.feedburner.com/Travelingtice'
+  }, {
+      name: 'Udacity Blog',
+      url: 'http://blog.udacity.com/feed'
+  }, {
+      name: 'CSS Tricks',
+      url: 'http://feeds.feedburner.com/CssTricks'
+  }, {
+      name: 'HTML5 Rocks',
+      url: 'http://feeds.feedburner.com/html5rocks'
+  }, {
+      name: 'Linear Digressions',
+      url: 'http://feeds.feedburner.com/udacity-linear-digressions'
+  }
 ];
 
 /* This function starts up our application. The Google Feed
@@ -127,7 +129,9 @@ $(function() {
     /* When the menu icon is clicked on, we need to toggle a class
      * on the body to perform the hiding/showing of our menu.
      */
-    menuIcon.on('click', function() {
+    menuIcon.on('click', clickMenuIcon);
+
+    function clickMenuIcon() {
         $('body').toggleClass('menu-hidden');
-    });
+    }
 }());
