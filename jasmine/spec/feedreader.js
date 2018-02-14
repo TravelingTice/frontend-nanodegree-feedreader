@@ -8,6 +8,7 @@
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
  */
+
 $(function() {
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
@@ -61,8 +62,8 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it('should be hidden by default', function() {
-          var body = document.querySelector('body');
-          expect(body.className).toBe('menu-hidden');
+          var body = $('body');
+          expect(body.hasClass('menu-hidden')).toBe(true);
         });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -70,13 +71,26 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
         it('should change visibility when menu icon is clicked', function() {
-          var menuIcon = document.querySelector('.icon-list');
-          clickMenuIcon();
-          expect(body.className).toBe(null);
+          var body = $('body');
+          var menuIcon = $('a.menu-icon-link');
+          menuIcon.click();
+          expect(body.hasClass('menu-hidden')).toBe(false);
+          menuIcon.click();
+          expect(body.hasClass('menu-hidden')).toBe(true); // But it still contains menu-hidden
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial Entries', function() {
+      beforeEach(function(done) {
+        loadFeed(0);
+        done();
+      });
 
+      it('when loadFeed() is called, there is at least a single .entry element within the .feed container', function(done) {
+        expect($('.feed .entry')).toExist();
+        done();
+      });
+    });
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
