@@ -34,7 +34,7 @@ $(function() {
     it('all have defined URLs', function() {
       allFeeds.forEach(function(feed) {
         expect(feed.url).toBeDefined();
-        expect(feed.url).not.toBe(null);
+        expect(feed.url).not.toEqual('');
       });
     });
 
@@ -45,7 +45,7 @@ $(function() {
     it('all have defined names', function() {
       allFeeds.forEach(function(feed) {
         expect(feed.name).toBeDefined();
-        expect(feed.name).not.toBe(null);
+        expect(feed.name).not.toEqual('');
       });
     });
   });
@@ -81,9 +81,7 @@ $(function() {
   /* Write a new test suite named "Initial Entries" */
   describe('Initial Entries', function() {
     beforeEach(function(done) {
-      loadFeed(0, function() {
-        done();
-      });
+      loadFeed(0, done);
     });
 
     /* Write a test that ensures when the loadFeed
@@ -92,9 +90,8 @@ $(function() {
      * Remember, loadFeed() is asynchronous so this test will require
      * the use of Jasmine's beforeEach and asynchronous done() function.
      */
-    it('are showing up in the feed', function(done) {
+    it('are showing up in the feed', function() {
       expect($('.feed').find('.entry')).toExist();
-      done();
     });
   });
 
